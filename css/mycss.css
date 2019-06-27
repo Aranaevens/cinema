@@ -1,0 +1,47 @@
+/* td:first-child{
+    font-weight: bold;
+} */
+
+.to-pdf{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.far {
+    color: red;
+    font-size: 2em;
+    text-align: center;
+}
+
+#NavWrap{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-nav{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.search-container input[type=text]{
+    padding: 0.4em;
+    margin-right: 0;
+    border: none;
+    font-size: 1em;
+}
+
+.search-container button{
+    cursor: pointer;
+    border: none;
+    margin-left: 0;
+    font-size: 1.2em;
+}
+
+#mapid{
+    height: 30rem;
+    width: 40rem;
+    margin-right: auto;
+    margin-left: auto;
+}
