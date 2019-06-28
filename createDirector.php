@@ -7,4 +7,3 @@ $new_obj = new Director($arr);
 $ctrl = new ControllerDirector();
 $ctrl->pushNew($new_obj);
 header("Location: index.php");
-test
