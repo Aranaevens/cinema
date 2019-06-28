@@ -19,7 +19,7 @@ $l_g = $arr['genlist'];
 <div class="container">
     <h3>Edition de <?= $tar->getTitre() ;?></h3>
     
-        <form method="POST" action="createMovie.php" id="crud-c">
+        <form method="POST" action="updateMovie.php" id="crud-c">
         <div class="wrap-crud">
             <p>
                 <label for="titre">Titre :</label>

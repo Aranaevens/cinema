@@ -43,19 +43,8 @@ try{
         }
         else if($_GET['crud'] == 'edit')
         {
-            if(isset($_GET['i']))
-            {
-                // TODO
-            }
-            else
-            {
-                $ctrlm->editView();
-            }
+            $ctrlm->editView();
         }
-        // else if($_GET['action'] == 'details')
-        // {
-        //     $ctrlm->viewDetails($_GET['n']);
-        // }
         else
         {
             throw new Exception("Invalid action passed to Movie Controller.");

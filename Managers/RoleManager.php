@@ -68,30 +68,7 @@ class RoleManager
     public function getDetails($id)
     {
         $arr = [];
-        // try{
-        $query = $this->dao->query('SELECT f.ID_FILM, f.ID_DIRECTOR, f.ID_GENRE, f.TITRE_FILM, f.DUREE_FILM, f.DATE_FILM, f.IMG_FILM
-        FROM
-            film f
-        INNER JOIN
-            casting c ON c.ID_FILM = f.ID_FILM
-        INNER JOIN
-            role r ON c.ID_ROLE = r.ID_ROLE
-        INNER JOIN
-            actor a ON c.ID_ACTOR = a.ID_ACTOR
-        WHERE r.ID_ROLE =' . $id);
-        //}
-        // catch(Exception $e){
-        //     echo '1';
-        //     echo $e->getMessage();
-        // }
-        
-        while ($donnees = $query->fetch(PDO::FETCH_ASSOC))
-        {
-            $arrIntmd = [];
-            $m = new Movie($donnees);
-            $arrIntmd[] = $m;
-            
-            $queryitmd = $this->dao->query('SELECT a.ID_ACTOR, a.PRENOM_ACTOR, a.NOM_ACTOR, a.BIRTH_ACTOR, a.GENDER_ACTOR, a.GENDER_ACTOR
+        $queryitmd = $this->dao->query('SELECT DISTINCT a.ID_ACTOR, a.PRENOM_ACTOR, a.NOM_ACTOR, a.BIRTH_ACTOR, a.GENDER_ACTOR, a.GENDER_ACTOR
                                 FROM
                                     film f
                                 INNER JOIN
@@ -100,11 +77,59 @@ class RoleManager
                                     role r ON c.ID_ROLE = r.ID_ROLE
                                 INNER JOIN
                                     actor a ON c.ID_ACTOR = a.ID_ACTOR
-                                WHERE r.ID_ROLE = ' . $id . ' AND f.ID_FILM=' . $m->getID_F());
+                                WHERE r.ID_ROLE =' . $id);
                                 
-            $data = $queryitmd->fetch(PDO::FETCH_ASSOC);
-            $r = new Actor ($data);
-            $arrIntmd[] = $r;
+        $data = $queryitmd->fetchAll(PDO::FETCH_ASSOC);
+        if (is_int(array_keys($data)[0]))
+        {
+            foreach ($data as $actor)
+            {
+                $arrIntmd = [];
+                $a = new Actor($actor);
+                $arrIntmd[] = $a;
+                $arrFilm = [];
+                $query = $this->dao->query('SELECT f.ID_FILM, f.ID_DIRECTOR, f.ID_GENRE, f.TITRE_FILM, f.DUREE_FILM, f.DATE_FILM, f.IMG_FILM
+                FROM
+                    film f
+                INNER JOIN
+                    casting c ON c.ID_FILM = f.ID_FILM
+                INNER JOIN
+                    role r ON c.ID_ROLE = r.ID_ROLE
+                INNER JOIN
+                    actor a ON c.ID_ACTOR = a.ID_ACTOR
+                WHERE r.ID_ROLE =' . $id . ' AND c.ID_ACTOR=' . $a->getID());
+                $donnees = $query->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($donnees as $film)
+                {
+                    $arrFilm[] = new Movie($film);
+                }
+                $arrIntmd[] = $arrFilm;
+                $arr[] = $arrIntmd;
+        }}
+        else
+        {
+            $a = new Actor($data);
+            $arrIntmd = [];
+            $arrIntmd[] = $a;
+            $arrFilm = [];
+            
+            $query = $this->dao->query('SELECT f.ID_FILM, f.ID_DIRECTOR, f.ID_GENRE, f.TITRE_FILM, f.DUREE_FILM, f.DATE_FILM, f.IMG_FILM
+            FROM
+                film f
+            INNER JOIN
+                casting c ON c.ID_FILM = f.ID_FILM
+            INNER JOIN
+                role r ON c.ID_ROLE = r.ID_ROLE
+            INNER JOIN
+                actor a ON c.ID_ACTOR = a.ID_ACTOR
+            WHERE a.ID_ACTOR =' . $a->getID() . ' AND r.ID_ROLE=' . $id);
+            $donnees = $query->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($donnees as $film)
+            {
+                
+                $arrFilm[] = new Movie($film);
+            }
+            $arrIntmd[] = $arrFilm;
             $arr[] = $arrIntmd;
         }
         return $arr;

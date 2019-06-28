@@ -10,14 +10,19 @@
 $current = '';
 foreach($list as $i)
 {
-    if ($current != $i[1])
+    // if ($current != $i[1])
+    // {
+    //     $current = $i[1];
+    //     echo '<tr><td class="roledet">' . $i[1] . '</td><td>' . $i[0]->getTitre() . '</td></tr>';
+    // }
+    // else
+    // {
+    //     echo '<tr><td class="roledet">' . '&nbsp' . '</td><td>' . $i[0]->getTitre() . '</td></tr>';
+    // }
+    echo '<tr><td>' . $i[0] . '</td>';
+    foreach ($i[1] as $film)
     {
-        $current = $i[1];
-        echo '<tr><td class="roledet">' . $i[1] . '</td><td>' . $i[0]->getTitre() . '</td></tr>';
-    }
-    else
-    {
-        echo '<tr><td class="roledet">' . '&nbsp' . '</td><td>' . $i[0]->getTitre() . '</td></tr>';
+        echo '<td class="roledet">' . $film->getTitre() . '</td></tr><tr><td class="roledet"></td>';
     }
 }
 ?>

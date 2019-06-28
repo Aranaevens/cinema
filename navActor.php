@@ -15,10 +15,14 @@ try{
         {
             $ctrla->createNewView();
         }
-        // else if($_GET['crud'] == 'delete')
-        // {
-        //     $ctrlm->delMovieView();
-        // }
+        else if($_GET['crud'] == 'delete')
+        {
+            $ctrla->deleteView();
+        }
+        else if($_GET['crud'] == 'edit')
+        {
+            $ctrla->editView();
+        }
     }
     else
     {

@@ -127,5 +127,12 @@ class ControllerMovie
             "genlist" => $l_g
         );
     }
+    
+    public function editOne($o)
+    {
+        $dbd = daoconnect();
+        $man = new MovieManager($dbd);
+        $man->delete($o);
+    }
 }
 

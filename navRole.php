@@ -15,10 +15,14 @@ try{
         {
             $ctrlr->createNewView();
         }
-        // else if($_GET['crud'] == 'delete')
-        // {
-        //     $ctrlm->delMovieView();
-        // }
+        else if($_GET['crud'] == 'delete')
+        {
+            $ctrlr->deleteView();
+        }
+        else if($_GET['crud'] == 'edit')
+        {
+            $ctrlr->editView();
+        }
     }
     else
     {
@@ -28,5 +32,5 @@ try{
 
 catch (Exception $e)
 {
-    erreur($e->getMessage());
+    echo $e->getMessage();
 }

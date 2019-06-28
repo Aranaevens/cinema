@@ -45,6 +45,46 @@ class ControllerRole
         $man = new RoleManager($dbd);
         $man->add($tar);
     }
+
+    public function deleteView()
+    {
+        $dbd = daoconnect();
+        $man = new RoleManager($dbd);
+        $list = $man->getList();
+        require "Views\deleteRoleView.php";
+    }
+
+    public function deleteOne($id)
+    {
+        $dbd = daoconnect();
+        $man = new RoleManager($dbd);
+        $man->delete($id);
+    }
+
+    public function editView()
+    {
+        $dbd = daoconnect();
+        $man = new RoleManager($dbd);
+        $list = $man->getList();
+        require "Views\\editRoleView.php";
+    }
+
+    public function editPlacehold($i)
+    {
+        $dbd = daoconnect();
+        $man = new RoleManager($dbd);
+        $target = $man->get($i);
+        return array(
+            "target" => $target,
+        );
+    }
+    
+    public function editOne($o)
+    {
+        $dbd = daoconnect();
+        $man = new RoleManager($dbd);
+        $man->delete($o);
+    }
 }
 
 ?>

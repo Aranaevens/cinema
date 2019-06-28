@@ -46,6 +46,45 @@ class ControllerActor
         $man->add($tar);
     }
 
+    public function deleteView()
+    {
+        $dbd = daoconnect();
+        $man = new ActorManager($dbd);
+        $list = $man->getList();
+        require "Views\deleteActorView.php";
+    }
+
+    public function deleteOne($id)
+    {
+        $dbd = daoconnect();
+        $man = new ActorManager($dbd);
+        $man->delete($id);
+    }
+
+    public function editView()
+    {
+        $dbd = daoconnect();
+        $man = new ActorManager($dbd);
+        $list = $man->getList();
+        require "Views\\editActorView.php";
+    }
+
+    public function editPlacehold($i)
+    {
+        $dbd = daoconnect();
+        $man = new ActorManager($dbd);
+        $target = $man->get($i);
+        return array(
+            "target" => $target,
+        );
+    }
+
+    public function editOne($o)
+    {
+        $dbd = daoconnect();
+        $man = new ActorManager($dbd);
+        $man->delete($o);
+    }
     
 }
 

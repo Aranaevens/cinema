@@ -42,8 +42,29 @@
         </div>
     </div>
     </li>
-    <li class="nav-item"><a class="nav-link" href="navMovie.php?crud=delete">DelMofilm</a></li>
-    <li class="nav-item"><a class="nav-link" href="navMovie.php?crud=edit">Edit Film</a></li>
+    <li class="nav-item"><div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Delete
+        </button>  
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="navMovie.php?crud=delete">Film</a>
+        <a class="dropdown-item" href="navActor.php?crud=delete">Acteur</a>
+        <a class="dropdown-item" href="navDirector.php?crud=delete">Réalisateur</a>
+        <a class="dropdown-item" href="navGenre.php?crud=delete">Genre</a>
+        <a class="dropdown-item" href="navRole.php?crud=delete">Role</a>
+        </div>
+    </div></li>
+    <li class="nav-item"><div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Edit
+        </button>  
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="navMovie.php?crud=edit">Film</a>
+        <a class="dropdown-item" href="navActor.php?crud=edit">Acteur</a>
+        <a class="dropdown-item" href="navDirector.php?crud=edit">Réalisateur</a>
+        <a class="dropdown-item" href="navGenre.php?crud=edit">Genre</a>
+        <a class="dropdown-item" href="navRole.php?crud=edit">Role</a>
+        </div></li>
     </ul>
     <div class="search-container">
     <form action="navSearch.php" method="GET">

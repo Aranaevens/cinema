@@ -38,6 +38,46 @@ class ControllerDirector
         $man = new DirectorManager($dbd);
         $man->add($tar);
     }
+
+    public function deleteView()
+    {
+        $dbd = daoconnect();
+        $man = new DirectorManager($dbd);
+        $list = $man->getList();
+        require "Views\deleteDirectorView.php";
+    }
+
+    public function deleteOne($id)
+    {
+        $dbd = daoconnect();
+        $man = new DirectorManager($dbd);
+        $man->delete($id);
+    }
+
+    public function editView()
+    {
+        $dbd = daoconnect();
+        $man = new DirectorManager($dbd);
+        $list = $man->getList();
+        require "Views\\editDirectorView.php";
+    }
+
+    public function editPlacehold($i)
+    {
+        $dbd = daoconnect();
+        $man = new DirectorManager($dbd);
+        $target = $man->get($i);
+        return array(
+            "target" => $target,
+        );
+    }
+    
+    public function editOne($o)
+    {
+        $dbd = daoconnect();
+        $man = new DirectorManager($dbd);
+        $man->delete($o);
+    }
 }
 
 ?>

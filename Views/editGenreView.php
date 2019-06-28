@@ -1,18 +1,18 @@
-<?php $titre = "Edition d'un film"; ?>
+<?php $titre = "Edition d'un genre"; ?>
 
 <?php ob_start();?>
 
 <div class="container" id="ajax">
-    <h3>Editer un film</h3>
+    <h3>Editer un genre</h3>
     
-        <form method="POST" action="editMovieAnnex.php" id="crud-c">
+        <form method="POST" action="editGenreAnnex.php" id="crud-c">
         <div class="wrap-crud">
             <div>
-                <label for="select-m">Film :</label>
+                <label for="select-m">Genre :</label>
                 <select class="selectpicker" id="select-m" name="mov">
                     <?php foreach ($list as $i)
                     {
-                        echo '<option value="' .$i->getID_F() . '">'. $i->getTitre() . '</option>';
+                        echo '<option value="' .$i->getID() . '">'. $i . '</option>';
                     }?>
                 </select>
             </div>
