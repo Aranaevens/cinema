@@ -24,14 +24,14 @@ $tar = $arr['target'];?>
             </p>
             <div>
                 <label for="genre">Genre :</label><br />
-                <?php if ($tar->getGenre())
+                <?php if ($tar->getGender())
                 {
                     echo '<input type="radio" name="genre" value="0"> Homme<br />
-                    <input type="radio" name="genre" value="1" selected> Femme<br />';
+                    <input type="radio" name="genre" value="1" checked="checked"> Femme<br />';
                 }
                 else
                 {
-                    echo '<input type="radio" name="genre" value="0" selected> Homme<br />
+                    echo '<input type="radio" name="genre" value="0" checked="checked"> Homme<br />
                     <input type="radio" name="genre" value="1"> Femme<br />';
                 }?>
             </div>
